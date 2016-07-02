@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
 # Integrate as you choose, just created this for Caesar Cipher with auto key.
 # Not sure how you would like to determine if it is a Caesar and to make this run, I'll leave that to you.
-import collections
+"""import collections
 from string import ascii_lowercase
 def caesar():  
   def find_key():
@@ -232,7 +232,7 @@ def vigenere():
         r = (chr((c - ord(key[i % best_len]) + nchars) % nchars + ordA)
              for i, c in enumerate(cleaned))
         return (key, "".join(r))
-    encoded = """
+    encoded = "
         MOMUD EKAPV TQEFM OEVHP AJMII CDCTI FGYAG JSPXY ALUYM NSMYH
         VUXJE LEPXJ FXGCM JHKDZ RYICU HYPUS PGIGM OIYHF WHTCQ KMLRD
         ITLXZ LJFVQ GHOLW CUHLO MDSOE KTALU VYLNZ RFGBX PHVGA LWQIS
@@ -249,7 +249,7 @@ def vigenere():
         ZPAAS ATPTZ FTPPD PORRF TAXZP KALQA WMIUD BWNCT LEFKO ZQDLX
         BUXJL ASIMR PNMBF ZCYLV WAPVF QRHZV ZGZEF KBYIO OFXYE VOWGB
         BXVCB XBAWG LQKCM ICRRX MACUO IKHQU AJEGL OIJHH XPVZW JEWBA
-        FWAML ZZRXJ EKAHV FASMU LVVUT TGK"""
+        FWAML ZZRXJ EKAHV FASMU LVVUT TGK"
     english_frequences = [
         0.08167, 0.01492, 0.02782, 0.04253, 0.12702, 0.02228, 0.02015,
         0.06094, 0.06966, 0.00153, 0.00772, 0.04025, 0.02406, 0.06749,
@@ -259,4 +259,4 @@ def vigenere():
     (key, decoded) = vigenere_decrypt(english_frequences, encoded)
     print "Key:", key
     print "\nText:", decoded
-
+    """
