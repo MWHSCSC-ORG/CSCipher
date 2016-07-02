@@ -20,7 +20,7 @@ def ceasar(contents):
   for shift in range(1,26):
     print("Running shift " + str(shift))
     ceasarOut = ""
-    for char in contents():
+    for char in contents:
       if char.isalpha():
         ceasarOut += mapping[1][(mapping[0][char] + shift) % 26]
       else:
