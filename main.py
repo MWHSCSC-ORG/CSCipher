@@ -1,6 +1,37 @@
-def main():
+def main(d):
+  e = []
+  for f in d.replace(" ","").replace("\t","").replace("\n","").replace("\r",""):
+    if f not in e:
+      e.push(f)
+  print("A total of " + str(len(e)) + " individual characters exist.")
+  g = []
+  if len(e) is 2:
+    print("Solving for binary encoding.")
+    #TODO fix
+    #g.push(int("0b" + d.replace(e[0],"0").replace(e[1],"1",2)).to_bytes((n.bit_length() + 7) // 8, 'big').decode())
+    #g.push((int("0b" + d.replace(e[0],"1").replace(e[1],"0",2)))
+    print("Solving for Bacon's cipher.")
+    h = d.replace(e[0],"A").replace(e[1],"B")
+    i = [h[i:i+5] for i in range(0, len(h), 5)]
+    # TODO programmatically
+    j = {"AAAAA":"a","AAAAB":"b","AAABA":"c","AAABB":"d","AABAA":"e","AABAB":"f","AABBA":"g","AABBB":"h","ABAAA":"i","ABAAB":"j","ABAAB":"k","ABABA":"l","ABABB":"m","ABBAA":"n","ABBAB":"o","ABBBA":"p","ABBBB":"q","BAAAA":"r","BAAAB":"s","BAABA":"t","BAABB":"u","BAABB":"v","BABAA":"w","BABAB":"x","BABBA":"y","BABBB":"z"}
+    k = ""
+    for l in i:
+      if l in j:
+        k += j[l]
+    g.push(k)
+    m = d.replace(e[0],"B").replace(e[1],"A")
+    n = [h[i:i+5] for i in range(0, len(h), 5)]
+    o = ""
+    for p in n:
+      if p in j:
+        o += j[p]
+    g.push(o)
+    print("Solving for Morse code.")
+    
+if __name__ == "__main__":
   print("Starting application...")
-  import os
+  import os, binascii
   a = True
   while a:
     b = input("Enter the file path of the ciphertext: ")
@@ -16,20 +47,8 @@ def main():
       a = True
   try:
     c = open(b, "r")
-    d = c.read()
+    d = c.read().replace(" ","").replace("\t","").replace("\n","").replace("\r","")
     c.close()
   except Exception as e:
     print("Error reading file.")
-  # Bacon Cipher
-  e = []
-  for f in d.replace(" ","").replace("\t","").replace("\n","").replace("\r",""):
-    if f not in e:
-      e.push(f)
-  print("A total of " + str(len(e)) + " individual characters exist.")
-  if len(e) is 2:
-    #binary, bacon, morse
-    g = d.replace(e[0],"0").replace(e[1],"1")
-    h = d.replace(e[0],"1").replace(e[1],"0")
-    
-if __name__ == "__main__":
-  main()
+  main(d)
