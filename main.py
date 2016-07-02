@@ -39,7 +39,7 @@ if __name__ == "__main__":
     if os.path.exists(b):
       print("File exists.")
       a = False
-    if b[-3:] is ".txt":
+    if b[-3:] is not ".txt":
       print("Must be a text file (.txt)")
       a = False
     else:
