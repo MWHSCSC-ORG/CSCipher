@@ -11,7 +11,7 @@ def findUniqueChars(contents):
   uniqueChars = []
   for char in contents:
     if char not in uniqueChars:
-      uniqueChars.push(char)
+      uniqueChars.append(char)
   return uniqueChars
 
 def caesar(contents):
@@ -25,7 +25,7 @@ def caesar(contents):
         ceasarOut += mapping[1][(mapping[0][char] + shift) % 26]
       else:
         ceasarOut += char
-    localPossibilities.push(ceasarOut)
+    localPossibilities.append(ceasarOut)
   return localPossibilities
 
 def switchBase(uniqueChars, contents):
@@ -56,7 +56,7 @@ def switchBase(uniqueChars, contents):
   for base in range(3,64):
     binaryForm = convert(contents,len(uniqueChars),2)
     if binaryForm is not -1:
-      localPossibilities.push(binaryForm)
+      localPossibilities.append(binaryForm)
   return localPossibilities
 
 def bacon(uniqueChars, contents):
@@ -68,14 +68,14 @@ def bacon(uniqueChars, contents):
   for chunk in chunks:
     if chunk in baconKey:
       baconOut += baconKey[chunk]
-  localPossibilities.push(baconOut)
+  localPossibilities.append(baconOut)
   oppBaconContents = contents.replace(uniqueChars[0],"B").replace(uniqueChars[1],"A")
   oppChunks = [oppBaconContents[i:i+5] for i in range(0, len(oppBaconContents), 5)]
   oppBaconOut = ""
   for oppChunk in oppChunks:
     if oppChunk in baconKey:
       oppBaconOut += j[oppChunk]
-  localPossibilities.push(oppBaconOut)
+  localPossibilities.append(oppBaconOut)
   return localPossbilities
 
 def main(contents):
@@ -83,12 +83,12 @@ def main(contents):
   uniqueChars = findUniqueChars(contents)
   print("A total of " + str(len(uniqueChars)) + " individual characters exist.")
   print("Solving for Ceasar cipher.")
-  possibilities.push(ceasar(contents))
+  possibilities.append(ceasar(contents))
   print("Solving for multiple number bases.")
-  possibilities.push(switchBase(uniqueChars, contents))
+  possibilities.append(switchBase(uniqueChars, contents))
   if len(uniqueChars) is 2:
     print("Solving for Bacon's cipher.")
-    possibilities.push(bacon(uniqueChars, contents))
+    possibilities.append(bacon(uniqueChars, contents))
     print("Solving for Morse code.")
     # TODO Morse Code
 
