@@ -5,6 +5,13 @@ def main(d):
       e.push(f)
   print("A total of " + str(len(e)) + " individual characters exist.")
   g = []
+  
+  # TODO for Aaron:
+  # If the frequency of the letters is similar to the number of times used in the english language withing a certain threshold, run a transposition cipher.
+  # Run an initial test for the frequency of the most used letter. Find the difference with the letter 'E' (aka the find_key() function) Run second and third test to determine if the same key holds for the next most used char. If so, we can determine it is Caesar Ciphered. We can run these tests before exit for if there's multiple ciphers envolved.
+  # Possible GUI Interface for final product
+  # Calculate the Index of Coincidence to determind if it's a Vigenere Cipher.
+
   if len(e) is 2:
     print("Solving for binary encoding.")
     #TODO fix
