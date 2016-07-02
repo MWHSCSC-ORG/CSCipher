@@ -14,7 +14,7 @@ def findUniqueChars(contents):
       uniqueChars.append(char)
   return uniqueChars
 
-def caesar(contents):
+def ceasar(contents):
   localPossibilities = []
   mapping = [dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",range(26))),dict(zip(range(26),"ABCDEFGHIJKLMNOPQRSTUVWXYZ"))]
   for shift in range(1,26):
