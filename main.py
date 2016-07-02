@@ -10,7 +10,9 @@
 def findUniqueChars(contents):
   uniqueChars = []
   for char in contents:
+    print("Found char " + char)
     if char not in uniqueChars:
+      print("Adding char " + char)
       uniqueChars.append(char)
   return uniqueChars
 
