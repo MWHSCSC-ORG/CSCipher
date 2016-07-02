@@ -80,7 +80,7 @@ def bacon(uniqueChars, contents):
 
 def main(contents):
   possibilities = []
-  uniqueChars = findUniqueChars()
+  uniqueChars = findUniqueChars(contents)
   print("A total of " + str(len(uniqueChars)) + " individual characters exist.")
   print("Solving for Ceasar cipher.")
   possibilities.push(ceasar(contents))
