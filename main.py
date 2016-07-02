@@ -1,67 +1,66 @@
-def main(d):
-  e = []
-  for f in d.replace(" ","").replace("\t","").replace("\n","").replace("\r",""):
-    if f not in e:
-      e.push(f)
-  print("A total of " + str(len(e)) + " individual characters exist.")
-  g = []
-  
-  # TODO for Aaron:
+# TODO for Aaron:
   # If the frequency of the letters is similar to the number of times used in the english language withing a certain threshold, run a transposition cipher.
   # Run an initial test for the frequency of the most used letter. Find the difference with the letter 'E' (aka the find_key() function) Run second and third test to determine if the same key holds for the next most used char. If so, we can determine it is Caesar Ciphered. We can run these tests before exit for if there's multiple ciphers envolved.
   # Possible GUI Interface for final product
   # Calculate the Index of Coincidence to determind if it's a Vigenere Cipher.
-
-  if len(e) is 2:
+# TODO for Thomas:
+  # Try every ceasar shift value
+  # Implement morse code
+  # Run against different base values (3-12,16,32,64)
+  # If program doesn't solve, try running combinations?
+def main(contents):
+  uniqueChars = []
+  for char in content:
+    if char not in uniqueChars:
+      uniqueChars.push(char)
+  print("A total of " + str(len(uniqueChars)) + " individual characters exist.")
+  possibilities = []
+  if len(uniqueChars) is 2:
     print("Solving for binary encoding.")
-    #TODO fix
-    #g.push(int("0b" + d.replace(e[0],"0").replace(e[1],"1",2)).to_bytes((n.bit_length() + 7) // 8, 'big').decode())
-    #g.push((int("0b" + d.replace(e[0],"1").replace(e[1],"0",2)))
     print("Solving for Bacon's cipher.")
-    h = d.replace(e[0],"A").replace(e[1],"B")
-    i = [h[i:i+5] for i in range(0, len(h), 5)]
-    # TODO programmatically
-    j = {"AAAAA":"a","AAAAB":"b","AAABA":"c","AAABB":"d","AABAA":"e","AABAB":"f","AABBA":"g","AABBB":"h","ABAAA":"i","ABAAB":"j","ABAAB":"k","ABABA":"l","ABABB":"m","ABBAA":"n","ABBAB":"o","ABBBA":"p","ABBBB":"q","BAAAA":"r","BAAAB":"s","BAABA":"t","BAABB":"u","BAABB":"v","BABAA":"w","BABAB":"x","BABBA":"y","BABBB":"z"}
-    k = ""
-    for l in i:
-      if l in j:
-        k += j[l]
-    g.push(k)
-    m = d.replace(e[0],"B").replace(e[1],"A")
-    n = [h[i:i+5] for i in range(0, len(h), 5)]
-    o = ""
-    for p in n:
-      if p in j:
-        o += j[p]
-    g.push(o)
+    baconContents = contents.replace(uniqueChars[0],"A").replace(uniqueChars[1],"B")
+    chunks = [baconContents[i:i+5] for i in range(0, len(baconContents), 5)]
+    baconKey = {"AAAAA":"a","AAAAB":"b","AAABA":"c","AAABB":"d","AABAA":"e","AABAB":"f","AABBA":"g","AABBB":"h","ABAAA":"i","ABAAB":"j","ABAAB":"k","ABABA":"l","ABABB":"m","ABBAA":"n","ABBAB":"o","ABBBA":"p","ABBBB":"q","BAAAA":"r","BAAAB":"s","BAABA":"t","BAABB":"u","BAABB":"v","BABAA":"w","BABAB":"x","BABBA":"y","BABBB":"z"}
+    baconOut = ""
+    for chunk in chunks:
+      if chunk in baconKey:
+        baconOut += baconKey[chunk]
+    possibilities.push(baconOut)
+    oppBaconContents = contents.replace(uniqueChars[0],"B").replace(uniqueChars[1],"A")
+    oppChunks = [oppBaconContents[i:i+5] for i in range(0, len(oppBaconContents), 5)]
+    oppBaconOut = ""
+    for oppChunk in oppChunks:
+      if oppChunk in baconKey:
+        oppBaconOut += j[oppChunk]
+    possibilities.push(oppBaconOut)
     print("Solving for Morse code.")
-    
+    # TODO Morse Code
 if __name__ == "__main__":
   print("Starting application...")
   import os, binascii
-  a = True
-  while a:
-    b = input("Enter the file path of the ciphertext: ")
+  noPath = True
+  while noPath:
+    path = input("Enter the file path of the ciphertext: ")
     print("Checking files...")
-    if os.path.exists(b):
+    if os.path.exists(path):
       print("File exists.")
-      a = False
-    if b[-3:] is not ".txt":
+      noPath = False
+    if path[-3:] is not ".txt":
       print("Must be a text file (.txt)")
-      a = False
+      noPath = True
     else:
       print("File does not exist.")
-      a = True
+      noPath = True
   try:
-    c = open(b, "r")
-    d = c.read().replace(" ","").replace("\t","").replace("\n","").replace("\r","")
-    c.close()
+    cipherFile = open(path, "r")
+    cleanContents = cipherFile.read().replace(" ","").replace("\t","").replace("\n","").replace("\r","")
+    rawContents = cipherFile.read()
+    cipherFile.close()
   except Exception as e:
     print("Error reading file.")
-  main(d)
-
-
-
+  i = 0
+  for possibility in (main(rawContents) + main(cleanContents)):
+    print(str(i) + ":  " + possibility)
 
 # Integrate as you choose, just created this for Caesar Cipher with auto key.
 # Not sure how you would like to determine if it is a Caesar and to make this run, I'll leave that to you.
