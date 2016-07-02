@@ -52,3 +52,42 @@ if __name__ == "__main__":
   except Exception as e:
     print("Error reading file.")
   main(d)
+  
+# Integrate as you choose, just created this for Caesar Cipher with auto key.
+# Not sure how you would like to determine if it is a Caesar and to make this run, I'll leave that to you.
+import collections
+from string import ascii_lowercase
+
+def find_key():
+    number = len(string)
+    array = []
+
+    dict = collections.defaultdict(int)
+    for character in string:
+        dict[character] += 1
+
+    for character in ascii_lowercase:
+        array.append((dict[character]/float(number)))
+
+    num = array.index(max(array))
+    key = (((num - 5) % 26) + 1)
+    return key
+
+def caesar_decrypt(n, ciphertext):
+    key = 'abcdefghijklmnopqrstuvwxyz'
+    result = ''
+
+    for l in ciphertext:
+        try:
+            i = (key.index(l) - n) % 26
+            result += key[i]
+        except ValueError:
+            result += l
+
+    return result
+
+string = "a"
+key = str(find_key())
+decrypted = str(caesar_decrypt(find_key(), string.lower()))
+print "Used key: " + key + "\n" + decrypted
+
