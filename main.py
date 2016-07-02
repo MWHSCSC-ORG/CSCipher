@@ -86,7 +86,7 @@ def caesar_decrypt(n, ciphertext):
 
     return result
 
-string = "a"
+string = "THE INPUT FROM THE FILE FOR THIS STRING"
 key = str(find_key())
 decrypted = str(caesar_decrypt(find_key(), string.lower()))
 print "Used key: " + key + "\n" + decrypted
