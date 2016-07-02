@@ -102,7 +102,7 @@ if __name__ == "__main__":
     if os.path.exists(path):
       print("File exists.")
       noPath = False
-    if path[-3:] is not ".txt":
+    if path[-4:] is not ".txt":
       print("Must be a text file (.txt), not " + path[-3:])
       noPath = True
     else:
