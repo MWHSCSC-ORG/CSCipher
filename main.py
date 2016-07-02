@@ -10,43 +10,42 @@
 def findUniqueChars(contents):
   uniqueChars = []
   for char in contents:
-    print("Found char " + char)
     if char not in uniqueChars:
-      print("Adding char " + char)
       uniqueChars.append(char)
   return uniqueChars
 
 def ceasar(contents):
   localPossibilities = []
-  mapping = [dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",range(26))),dict(zip(range(26),"ABCDEFGHIJKLMNOPQRSTUVWXYZ"))]
-  for shift in range(1,26):
-    print("Running shift " + str(shift))
-    ceasarOut = ""
-    for char in contents:
-      if char.isalpha():
-        ceasarOut += mapping[1][(mapping[0][char] + shift) % 26]
-      else:
-        ceasarOut += char
-    localPossibilities.append(ceasarOut)
+  #mapping = [dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",range(26))),dict(zip(range(26),"ABCDEFGHIJKLMNOPQRSTUVWXYZ"))]
+  #for shift in range(1,26):
+  #  print("Running shift " + str(shift))
+  #  ceasarOut = ""
+  #  for char in contents:
+  #    if char.isalpha():
+  #      ceasarOut += mapping[1][(mapping[0][char] + shift) % 26]
+  #    else:
+  #      ceasarOut += char
+  #  localPossibilities.append(ceasarOut)
   return localPossibilities
 
 def switchBase(uniqueChars, contents):
   localPossibilities = []
   def int2base(x, base):
-    digs = string.digits + string.letters  
+    digs = string.digits + string.ascii_letters  
     if x < 0: sign = -1
     elif x == 0: return digs[0]
     else: sign = 1
     x *= sign
     digits = []
     while x:
-      digits.append(digs[x % base])
+      digits.append(digs[int(x % base)])
       x /= base
     if sign < 0:
       digits.append('-')
     digits.reverse()
     return ''.join(digits)
   def convert(number, original_base, new_base):
+    precision = None
     integral, point, fractional = number.strip().partition('.')
     num = -1
     try:
@@ -93,6 +92,7 @@ def main(contents):
     possibilities.append(bacon(uniqueChars, contents))
     print("Solving for Morse code.")
     # TODO Morse Code
+  return possibilities
 
 if __name__ == "__main__":
   print("Starting application...")
@@ -109,11 +109,13 @@ if __name__ == "__main__":
       noPath = True
   try:
     cipherFile = open(path, "r")
-    cleanContents = cipherFile.read().replace(" ","").replace("\t","").replace("\n","").replace("\r","")
     rawContents = cipherFile.read()
+    print("Raw contents: " + rawContents)
+    cleanContents = rawContents.replace(" ","").replace("\t","").replace("\n","").replace("\r","")
+    print("Clean contents: " + cleanContents)
     cipherFile.close()
   except Exception as e:
     print("Error reading file.")
   i = 0
-  for possibility in (main(rawContents) + main(cleanContents)):
-    print(str(i) + ":  " + possibility)
+  for possibility in main(rawContents):
+    print(possibility)
